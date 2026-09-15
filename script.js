@@ -9,56 +9,6 @@ function openLetter() {
     }, 750);
 }
 
-// --- CARROSSEL (flexbox + scroll-snap nativo) ---
-const track = document.getElementById('carouselTrack');
-const cards = document.querySelectorAll('.photo-card');
-const dotsWrap = document.getElementById('carouselDots');
-let currentIndex = 0;
-let autoplayTimer = null;
-
-cards.forEach(() => {
-    const dot = document.createElement('span');
-    dotsWrap.appendChild(dot);
-});
-const dots = document.querySelectorAll('.carousel-dots span');
-
-function updateDots(index) {
-    dots.forEach((d, i) => d.classList.toggle('active', i === index));
-}
-
-function scrollToCard(index) {
-    currentIndex = (index + cards.length) % cards.length;
-    cards[currentIndex].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-    updateDots(currentIndex);
-}
-
-function moveSlide(direction) {
-    scrollToCard(currentIndex + direction);
-}
-
-// detecta qual cartão está centralizado ao rolar (toque/swipe nativo do iPhone)
-const cardObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting && entry.intersectionRatio > 0.6) {
-            currentIndex = Array.from(cards).indexOf(entry.target);
-            updateDots(currentIndex);
-        }
-    });
-}, { root: track, threshold: [0.6] });
-
-cards.forEach(card => cardObserver.observe(card));
-
-updateDots(0);
-
-function startAutoplay() {
-    autoplayTimer = setInterval(() => moveSlide(1), 4500);
-}
-function stopAutoplay() {
-    clearInterval(autoplayTimer);
-}
-startAutoplay();
-track.addEventListener('touchstart', stopAutoplay, { passive: true });
-
 // --- CONTAGEM REGRESSIVA (17/09/2026 às 18:30) ---
 const targetDate = new Date(2026, 8, 17, 18, 30, 0).getTime();
 
