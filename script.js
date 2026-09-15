@@ -79,12 +79,18 @@ updateCountdown();
 
 // --- MENSAGENS DE AMOR ALEATÓRIAS ---
 const messages = [
-    "Lembrando de você o dia todo por aqui. Conta os segundos para te ver!",
-    "O pão de queijo quentinho e eu estamos te esperando em Minas. Boa viagem!",
-    "Você combina comigo (e com Minas também)! Te amo!",
-    "Já tô imaginando o abraço apertado quando você descer daí.",
-    "Te amo mais do que a minha paixão por eletrônica e café juntos! rs",
-    "Boa estrada, meu amor. Vem com cuidado que eu cuido do resto."
+    "Passando o dia inteiro com a cabeça em você e contando cada minuto para o momento em que a gente finalmente se abraçar.",
+    "Tem um pão de queijo quentinho e muita saudade te aguardando aqui em Minas. Boa viagem, meu amor!",
+    "Dá até gosto de ver: você combina perfeitamente comigo e tem todinha a cara de Minas Gerais.",
+    "Já consigo até visualizar a cena de você descendo e a gente se encontrando naquele abraço apertado.",
+    "Te amo mais do que todas as linhas de código e xícaras de café do meu dia juntas. (E olha que é muito café!)",
+    "Pé na estrada com cuidado, meu amor. Pode vir tranquila que o resto deixa comigo por aqui.",
+    "A distância até tenta atrapalhar, mas o pensamento não sai de você nem por um segundo.",
+    "O melhor fuso horário do meu dia é aquele em que a gente se fala e o relógio parece parar para a gente aproveitar mais.",
+    "Se a saudade desse tempo gerasse energia, dava para abastecer a casa inteira. Vem logo me ver!",
+    "Nem o melhor algoritmo do mundo conseguiria prever o tamanho da alegria que é te esperar.",
+    "Coração já tá acelerado só de pensar que daqui a pouco a gente tá juntinho de novo.",
+    "Guarda um sorriso bem bonito para quando a gente se ver, porque o meu já tá garantido te esperando."
 ];
 
 function showRandomMessage() {
