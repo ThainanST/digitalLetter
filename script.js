@@ -29,7 +29,10 @@ function updateCarouselDots(index) {
 
 function moveSlide(direction) {
     currentPhotoIndex = (currentPhotoIndex + direction + photoCards.length) % photoCards.length;
-    photoCards[currentPhotoIndex].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    const card = photoCards[currentPhotoIndex];
+    // rola apenas o carrossel (eixo X), nunca a página inteira
+    const targetLeft = card.offsetLeft - (carouselTrack.clientWidth - card.clientWidth) / 2;
+    carouselTrack.scrollTo({ left: targetLeft, behavior: 'smooth' });
     updateCarouselDots(currentPhotoIndex);
 }
 
