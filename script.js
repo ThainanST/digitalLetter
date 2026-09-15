@@ -1,13 +1,53 @@
-// --- ABRIR A CARTA (animação de envelope) ---
+// --- ABRIR A CARTA (animação de envelope + inicia a música) ---
 function openLetter() {
     const envelope = document.getElementById('envelope');
     envelope.classList.add('open');
+
+    const bgMusic = document.getElementById('bgMusic');
+    bgMusic.volume = 0.5;
+    bgMusic.play().catch(() => {});
 
     setTimeout(() => {
         document.getElementById('envelopeScreen').classList.add('hidden');
         document.getElementById('mainContent').classList.add('visible');
     }, 750);
 }
+
+// --- CARROSSEL (flexbox + scroll-snap nativo) ---
+const carouselTrack = document.getElementById('carouselTrack');
+const photoCards = document.querySelectorAll('.photo-card');
+const carouselDotsWrap = document.getElementById('carouselDots');
+let currentPhotoIndex = 0;
+let carouselAutoplay = null;
+
+photoCards.forEach(() => carouselDotsWrap.appendChild(document.createElement('span')));
+const carouselDots = document.querySelectorAll('.carousel-dots span');
+
+function updateCarouselDots(index) {
+    carouselDots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+}
+
+function moveSlide(direction) {
+    currentPhotoIndex = (currentPhotoIndex + direction + photoCards.length) % photoCards.length;
+    photoCards[currentPhotoIndex].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    updateCarouselDots(currentPhotoIndex);
+}
+
+// detecta qual foto está centralizada ao rolar (swipe nativo do iPhone)
+const carouselObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio > 0.6) {
+            currentPhotoIndex = Array.from(photoCards).indexOf(entry.target);
+            updateCarouselDots(currentPhotoIndex);
+        }
+    });
+}, { root: carouselTrack, threshold: [0.6] });
+
+photoCards.forEach(card => carouselObserver.observe(card));
+updateCarouselDots(0);
+
+carouselAutoplay = setInterval(() => moveSlide(1), 4500);
+carouselTrack.addEventListener('touchstart', () => clearInterval(carouselAutoplay), { passive: true });
 
 // --- CONTAGEM REGRESSIVA (17/09/2026 às 18:30) ---
 const targetDate = new Date(2026, 8, 17, 18, 30, 0).getTime();

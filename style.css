@@ -154,6 +154,112 @@ h1 {
     letter-spacing: 0.5px;
 }
 
+.section-title {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 1.15rem;
+    color: #e0559a;
+    font-weight: 700;
+    margin: 4px 0 14px;
+}
+
+/* ============ CARROSSEL DE FOTOS (scroll-snap nativo) ============ */
+.carousel {
+    position: relative;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.carousel-track {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 8px 12% 18px;
+}
+.carousel-track::-webkit-scrollbar {
+    display: none;
+}
+.photo-card {
+    position: relative;
+    flex: 0 0 76%;
+    aspect-ratio: 4 / 5;
+    scroll-snap-align: center;
+    background: linear-gradient(160deg, #fff3f7, #fbe6ee);
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 16px 32px -8px rgba(224, 85, 154, 0.28);
+}
+.photo-card .ph-fallback {
+    position: absolute;
+    inset: 0;
+    font-size: 0.75rem;
+    color: #b5828f;
+    padding: 10px;
+    text-align: center;
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.photo-card img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    z-index: 1;
+}
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #a8455f;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 14px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    z-index: 20;
+    transition: transform 0.15s ease, background 0.2s ease;
+}
+.carousel-btn:active {
+    transform: translateY(-50%) scale(0.92);
+    background: rgba(255, 255, 255, 0.85);
+}
+.prev { left: 4px; }
+.next { right: 4px; }
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    margin: 4px 0 26px;
+}
+.carousel-dots span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #f0d3dd;
+    transition: all 0.25s ease;
+}
+.carousel-dots span.active {
+    background: #e0559a;
+    width: 18px;
+    border-radius: 3px;
+}
+
 /* ============ MENSAGEM PRINCIPAL ============ */
 .message {
     font-family: 'Quicksand', sans-serif;
